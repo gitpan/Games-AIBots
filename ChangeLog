@@ -1,5 +1,12 @@
 # $File: //member/autrijus/AIBots/ChangeLog $
-# $Revision: #1 $ $Change: 634 $ $DateTime: 2002/08/14 02:58:47 $
+# $Revision: #2 $ $Change: 693 $ $DateTime: 2002/08/17 09:29:49 $
+
+[Changes for 0.03 - August 18, 2002]
+
+This release adds some POD files and cleaned up a bit code style.
+
+Also, "aibots -h" now shows help, which seems to be a much needed
+command line option everywhere.
 
 [Changes for 0.02 - August 14, 2002]
 

@@ -1,15 +1,48 @@
 # $File: //member/autrijus/AIBots/lib/Games/AIBots.pm $ $Author: autrijus $
-# $Revision: #2 $ $Change: 634 $ $DateTime: 2002/08/14 02:58:47 $
+# $Revision: #3 $ $Change: 692 $ $DateTime: 2002/08/17 09:29:13 $
 
-package Games::AIBots;
 require 5.005;
-
-$Games::AIBots::VERSION = '0.02';
+package Games::AIBots;
+$Games::AIBots::VERSION = '0.03';
 
 use strict;
 use integer;
 use Games::AIBot;
 use File::Glob;
+
+=head1 NAME
+
+Games::AIBots - An improved clone of A.I.Wars in Perl
+
+=head1 VERSION
+
+This document describes version 0.03 of Locale::Maketext::Fuzzy.
+
+=head1 SYNOPSIS
+
+In the command line:
+
+    % aibots			# with Tk, displays the GUI
+    % aibots map bot1 bot2... 	# run the game
+    % aibots -h			# show help
+    
+Programatically:
+
+    use Games::AIBots;
+    Games::AIBots::init_sound($flag);
+    Games::AIBots::init_console();
+    # Games::AIBots::init_gui();	# requires Tk
+    Games::AIBots::init_arg($map, @bots);
+    Games::AIBots::init_map();
+    Games::AIBots::do_loop($rounds);
+
+=head1 DESCRIPTION
+
+This module exists exclusively for the purpose of the F<aibots>
+script bundled in the distribution.  Please see L<aibots> for
+an explanation of the game's mechanics, rules and tips.
+
+=cut
 
 # =====================
 # Constants Declaration
@@ -1505,5 +1538,28 @@ sub user_tick {
 
     return ref($cmd) eq 'CODE' ? &{$cmd} : $cmd;
 }
+
 1;
 
+=head1 SEE ALSO
+
+L<aibots>, L<Games::AIBot>
+
+=head1 AUTHORS
+
+Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+
+Files under the F<bots/> directory was contributed by students in
+the autonomous learning experimnetal class, Bei'zheng junior high
+school, Taipei, Taiwan.
+
+=head1 COPYRIGHT
+
+Copyright 2001, 2002 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
+
+This program is free software; you can redistribute it and/or 
+modify it under the same terms as Perl itself.
+
+See L<http://www.perl.com/perl/misc/Artistic.html>
+
+=cut

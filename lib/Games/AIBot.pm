@@ -1,12 +1,35 @@
 # $File: //member/autrijus/AIBots/lib/Games/AIBot.pm $ $Author: autrijus $
-# $Revision: #1 $ $Change: 1 $ $DateTime: 2002/06/11 08:35:12 $
+# $Revision: #2 $ $Change: 692 $ $DateTime: 2002/08/17 09:29:13 $
 
-package Games::AIBot;
 require 5.005;
+package Games::AIBot;
 $Games::AIBot::VERSION = '0.01';
 
 use strict;
 use integer;
+
+=head1 NAME
+
+Games::AIBot - An AI Bot object
+
+=head1 VERSION
+
+This document describes version 0.01 of Locale::Maketext::Fuzzy.
+
+=head1 SYNOPSIS
+
+    use Games::AIBot;
+    my $bot = Games::AIBot->new($botfile);
+    $bot->tick;
+
+=head1 DESCRIPTION
+
+This module exists exclusively for the purpose of the F<aibots>
+script bundled in the distribution.  Please see L<aibots> for
+an explanation of the game's mechanics, rules and tips.
+
+=cut
+
 use fields qw/max_fuel  max_ammo  max_life
               fuel      ammo      life
               x         y         h         score
@@ -42,8 +65,10 @@ sub new {
         $line =~ s/\$(\w+)/exists($bot->[0]->{$1}) ? "\${\$bot}{$1}" : "\${\$bot}{'var'}{$1}"/eg;
         $line =~ s/\&(?=\w+)/\$bot->_/g;
         $bot->{'lineidx'}     .= $condflag; # and (index($line, '$') > -1));
-        $bot->{'stateidx'}{$1} = $count if $line =~ /^sub[\s\t]+(.+)[\s\t]+{/ or $line =~ /^(.+):[\s\t]*{/;
-        $bot->{'condidx'}     .= int($line ne '}') + ($line =~ /^(?:if|unless|elsif|else|sub|.+:)[\s\t]/);
+        $bot->{'stateidx'}{$1} = $count
+	    if $line =~ /^sub[\s\t]+(.+)[\s\t]+{/ or $line =~ /^(.+):[\s\t]*{/;
+        $bot->{'condidx'}     .= int($line ne '}') +
+	    ($line =~ /^(?:if|unless|elsif|else|sub|.+:)[\s\t]/);
     }
 
     $bot->{'queue'}    = [];
@@ -118,7 +143,8 @@ sub tick {
             $bot->gotostate($bot->{'state'});
         }
         elsif ($line eq 'return') {
-            warn $bot->{'name'}." cannot return from state ".$bot->{'state'} unless ($bot->{'stack'} and @{$bot->{'stack'}});
+            warn $bot->{'name'}." cannot return from state ".$bot->{'state'}
+		unless ($bot->{'stack'} and @{$bot->{'stack'}});
             eval{@{$bot}{'state', 'line'} = @{pop(@{$bot->{'stack'}})}};
             # print "return to line ",$bot->{'line'},"\n";
         }
@@ -139,7 +165,8 @@ sub tick {
         }
         else {
             # command
-            my $times = ((int($1) eq $1) ? $1 : $bot->cond($1)) if ($line =~ s/\s*\*\s*(.+)$//);
+            my $times = ((int($1) eq $1) ? $1 : $bot->cond($1))
+		if ($line =~ s/\s*\*\s*(.+)$//);
             my @cmds;
 
             push @cmds, $line for (1..($times || 1));
@@ -242,7 +269,8 @@ sub _turnto {
     my ($bot, $head) = @_;
     return if !$head or $bot->{'h'} eq $head;
 
-    my $delta = (index('8624', $bot->{'h'}) - index('8624', $head) + 4) % 4;
+    my $delta = (index('8624', $bot->{'h'})
+		- index('8624', $head) + 4) % 4;
 
     return ('left')     if $delta == 1;
     return ('left * 2') if $delta == 2;
@@ -264,7 +292,8 @@ sub _headto {
 
 sub _toggle {
     my $bot = shift;
-    $bot->{'var'}{'_'.$bot->{'state'}} = !$bot->{'var'}{'_'.$bot->{'state'}};
+    $bot->{'var'}{'_'.$bot->{'state'}}
+	= !$bot->{'var'}{'_'.$bot->{'state'}};
     return !$bot->{'var'}{'_'.$bot->{'state'}};
 }
 
@@ -290,5 +319,27 @@ sub _bumped {
     );
 }
 
-
 1;
+
+=head1 SEE ALSO
+
+L<aibots>, L<Games::AIBots>
+
+=head1 AUTHORS
+
+Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+
+Files under the F<bots/> directory was contributed by students in
+the autonomous learning experimnetal class, Bei'zheng junior high
+school, Taipei, Taiwan.
+
+=head1 COPYRIGHT
+
+Copyright 2001, 2002 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
+
+This program is free software; you can redistribute it and/or 
+modify it under the same terms as Perl itself.
+
+See L<http://www.perl.com/perl/misc/Artistic.html>
+
+=cut

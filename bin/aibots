@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # $File: //member/autrijus/AIBots/bin/aibots $ $Author: autrijus $
-# $Revision: #1 $ $Change: 1 $ $DateTime: 2002/06/11 08:35:12 $
+# $Revision: #2 $ $Change: 692 $ $DateTime: 2002/08/17 09:29:13 $
 #
 # Manual at the __END__ of script
 #
@@ -14,7 +14,10 @@ $::VERSION = $Games::AIBots::VERSION;
 BEGIN {
     $|++;
     use vars qw/%opt/;
-    getopts(':csmoru', \%opt);
+    getopts(':csmoruh', \%opt);
+
+    (system("perldoc $0"), exit) if $opt{'h'};
+
     if (!$opt{'c'} and !$opt{'o'} and !$opt{'r'}) {eval q{
         use Tk;
         use Tk::Balloon;
@@ -66,8 +69,7 @@ aibots - An improved clone of A.I.Wars in Perl
 This is a clone of C<A.I. Wars> (L<http://www.tacticalneuronics.com/ai.htm>)
 in pure perl, with C<Tk> and console interfaces.
 
-Please consult the above URL for the general information about this
-game.
+Please consult the above URL for general information about this game.
 
 =head1 OPTIONS
 
@@ -95,7 +97,7 @@ Defaults to the install path of C<Games/AIBots>.
 =head3 Map Menu
 
 The drop-down menu in the bottom-left corner lists all available 
-maps. The ones in square brackets (eg. [Solania]) denotes a "level" 
+maps. The ones in square brackets (e.g. [Solania]) denotes a "level" 
 with pre-defined bots.
 
 Beginners are encouraged to start with the C<Open> or C<Arena> map.
@@ -144,7 +146,8 @@ during close encounters, and fast-forwards boring intervals.
 
 =head3 Sound 
 
-If the Win32::Sound module is installed, AIBots could play sounds upon each event.
+If the B<Win32::Sound> module is installed, AIBots could play sounds
+upon each event.
 
 =head2 The Title Panel
 
@@ -453,17 +456,17 @@ beam fuel/ammo/command;
 
 =head3 Detection
 
-&nearst(¡§friend¡¨|¡¨enemy¡¨)
+&nearst("friend"|"enemy")
 
-&inperim(¡§friend¡¨|¡¨enemy¡¨)
+&inperim("friend"|"enemy")
 
-&headto(¡§friend¡¨|¡¨enemy¡¨)
+&headto("friend"|"enemy")
 
 =head3 Checking Return Values
 
-&found(¡§$obj1|$obj2|...¡¨)
+&found("$obj1|$obj2|...")
 
-&bumped(¡§$obj1|$obj2|...¡¨)
+&bumped("$obj1|$obj2|...")
 
 =head3 Current Status
 
@@ -523,11 +526,11 @@ return;
 
 =head1 AUTHORS
 
-Autrijus Tang E<lt>autrijus@autrijus.org>
+Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2001 by Autrijus Tang E<lt>autrijus@autrijus.org>.
+Copyright 2001, 2002 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
 
 This program is free software; you can redistribute it and/or 
 modify it under the same terms as Perl itself.

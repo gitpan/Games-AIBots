@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.05.
+signed via the Module::Signature module, version 0.06.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,12 +14,12 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 e5c5789bc02042e91b5b8b632d7e38be0545b6a5 ChangeLog
+SHA1 048c55d5a3f47d922dc847d1e3a47da25d8152db ChangeLog
 SHA1 3efdf8f7e790c1d123b84ed68e877d0a63f12098 MANIFEST
 SHA1 13ebbd1abd5a62b3110d46b8a9d7e55c4efa53f2 Makefile.PL
-SHA1 7bea53a9ffc82b9b8fc6074207937d4c37b919b6 README
+SHA1 505c30cdd6a24870c14df1595d7312414ffbbe1a README
 SHA1 92f1e77b583fe639fc1ae9c092fd23dd70d3b237 TODO
-SHA1 906de3f811f8fde3198237b9795bb1fc3b75df17 bin/aibots
+SHA1 5151fc7cfd46c5dcc126dc53438c9892f36a3ff0 bin/aibots
 SHA1 31c19bbfa7beb88df05c042f253966c75c566140 doc/aibots.files/filelist.xml
 SHA1 19e7f18b185a9e20ff8c0f4707c89d32df07c904 doc/aibots.files/image001.gif
 SHA1 29742d9f42b1e814212bcff57a936b3df72e362d doc/aibots.files/image002.gif
@@ -51,8 +51,8 @@ SHA1 a0bbb59866d343389b0d861b1f7e9b7dde6bf480 doc/aibots.files/image027.gif
 SHA1 d5901c339ada0872f0bc34a0de765cc415dcd05b doc/aibots.files/image028.gif
 SHA1 563f76d5b4ef327a3415593aed3c29421be31157 doc/aibots.html
 SHA1 1cf67a9603a66f81b1cb2e54c84f766e74075593 doc/aibots.zh_tw.html
-SHA1 5b76dda8e4dfc7c900476faf45ddb476cf9d654d lib/Games/AIBot.pm
-SHA1 f2de108484b731649683ebb067967081c0632bee lib/Games/AIBots.pm
+SHA1 510c35b8c8e8cafbb51f7849c65a664d68baf54d lib/Games/AIBot.pm
+SHA1 f98b7ea5338ea61ac1244e5511a8762918d0f686 lib/Games/AIBots.pm
 SHA1 989348c7cb5fb97229225734edf650e66a2e7b13 lib/Games/AIBots/bots/Class0.bot
 SHA1 efd94f1729c603c18bc1653bd6a6035369d2655b lib/Games/AIBots/bots/Cocoon.bot
 SHA1 906779b70f92bd374aacbccaa76fc74d5e83e177 lib/Games/AIBots/bots/Drone1.bot
@@ -231,7 +231,7 @@ SHA1 3aee4bde510d1a55156f996c0f3abdd96d04bb1d t/AIBots.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.0.7 (FreeBSD)
 
-iD8DBQE9Wi1vtLPdNzw1AaARAlg5AJ9KEDlGOu/zr7zJtoVW9RCgfKRYPACgnP8u
-kEfp47R8PrwZ9Grh6ScZRio=
-=5Kes
+iD8DBQE9Xn3UtLPdNzw1AaARAjgHAKCi57JmhIIngJbCENuIIjbz/uXI1ACgr+4j
+KdhPj5WwpDHR0HCfi7Dd1a4=
+=fSVJ
 -----END PGP SIGNATURE-----
