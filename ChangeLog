@@ -1,0 +1,15 @@
+# $File: //member/autrijus/AIBots/ChangeLog $
+# $Revision: #1 $ $Change: 634 $ $DateTime: 2002/08/14 02:58:47 $
+
+[Changes for 0.02 - August 14, 2002]
+
+This release fixed the showstopping bug on recent Tk environments, where
+<Keypress-?> should be written <Keypress-question>.  Thanks for various
+people who wrote in to notify me of this bug.
+
+Essentially, nothing had been changed after one year. :-/  If anybody
+wishes to volunteer maintainership for this module, I'd be really happy.
+
+[Changes for 0.01 - August 28, 2001]
+
+Initial release on CPAN.

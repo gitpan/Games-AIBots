@@ -1,5 +1,5 @@
 # $File: //member/autrijus/AIBots/lib/Games/AIBot.pm $ $Author: autrijus $
-# $Revision: #1 $ $Change: 1584 $ $DateTime: 2001/08/29 00:47:24 $
+# $Revision: #1 $ $Change: 1 $ $DateTime: 2002/06/11 08:35:12 $
 
 package Games::AIBot;
 require 5.005;

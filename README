@@ -1,3 +1,6 @@
+# $File: //member/autrijus/AIBots/README $ $Author: autrijus $
+# $Revision: #2 $ $Change: 634 $ $DateTime: 2002/08/14 02:58:47 $
+
 This is the README file for Games::AIBots, An improved clone of
 A.I.Wars in Perl, by Autrijus Tang and students of the Bei'zheng
 juniour high school's Perl Programming class.
@@ -10,13 +13,15 @@ game manual.
 
 Games::AIBots uses the standard perl module install process:
 
+cpansign -v             # see the SIGNATURE file for details
 perl Makefile.PL
 make
+make test
 make install
 
 * Copyright
 
-Copyright 2001 by Autrijus Tang <autrijus@autrijus.org>,
+Copyright 2001, 2002 by Autrijus Tang <autrijus@autrijus.org>,
 
 All rights reserved.  You can redistribute and/or modify
 this bundle under the same terms as Perl itself.

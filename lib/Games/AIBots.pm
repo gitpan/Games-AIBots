@@ -1,10 +1,10 @@
 # $File: //member/autrijus/AIBots/lib/Games/AIBots.pm $ $Author: autrijus $
-# $Revision: #1 $ $Change: 1584 $ $DateTime: 2001/08/29 00:47:24 $
+# $Revision: #2 $ $Change: 634 $ $DateTime: 2002/08/14 02:58:47 $
 
 package Games::AIBots;
 require 5.005;
 
-$Games::AIBots::VERSION = '0.01';
+$Games::AIBots::VERSION = '0.02';
 
 use strict;
 use integer;
@@ -16,10 +16,12 @@ use File::Glob;
 # =====================
 
 # Global variables
-my ($Console, @Flash, $Top, $Canvas, $DFrame1, $DFrame2, $UFrame, $Btn_play, $Btn_stop, $Btn_tempo, $Btn_watch, $Btn_sound, $Btn_about, $Lbl_info, $Dlg_about, @Snodes);
+my ($Console, @Flash, $Top, $Canvas, $DFrame1, $DFrame2, $UFrame,
+    $Btn_play, $Btn_stop, $Btn_tempo, $Btn_watch, $Btn_sound, $Btn_about,
+    $Lbl_info, $Dlg_about, @Snodes);
 my (@Btn_arg, @Arg, @Bots, $Board, $Running, $Tick, $FirstBot, $Watch,
-%Buffer, %Wav, $Sound, $Music, %Mines, %Teamvar, $GUI, $MPlayer, %Flash,
-%Color, %UserCmd, $Continue, $Msglog);
+    %Buffer, %Wav, $Sound, $Music, %Mines, %Teamvar, $GUI, $MPlayer, %Flash,
+    %Color, %UserCmd, $Continue, $Msglog);
 my @Mnu_arg = map {''} (0..9);
 use vars qw/$Mask/;
 
@@ -27,7 +29,9 @@ use vars qw/$Mask/;
 my ($Max_ammo,     $Max_life,    $Max_fuel)    = (30, 10, 2500);
 my ($Vault_ammo,   $Flag_ammo,   $Flag_fuel)   = (20, 30, 350);
 my ($Cloak_fuel,   $Cloak_ammo,  $Score_adj)   = (10,  2, 20);
-my ($Tick_delay,   $Scan_range,  $Scan_list)   = (160, 5, 'space wall fence flag mine vault friend enemy');
+my ($Tick_delay,   $Scan_range,  $Scan_list)   = (
+    160, 5, 'space wall fence flag mine vault friend enemy'
+);
 my ($Cols, $Rows,  $Tile_width,  $Tile_height) = (40, 25, 18, 18);
 my $Path = $ENV{'Path_AIBots'} || (__FILE__ =~ /^(.+)\.pm$/ ? $1 : '.');
 
@@ -117,7 +121,7 @@ sub init_gui {
     $Top->bind('<KeyPress-s>', \&Games::AIBots::btn_sound);
     $Top->bind('<KeyPress-t>', \&Games::AIBots::btn_tempo);
     $Top->bind('<KeyPress-T>', sub {&Games::AIBots::btn_tempo for (1..2)});
-    $Top->bind('<KeyPress-?>', \&Games::AIBots::btn_about);
+    $Top->bind('<KeyPress-question>', \&Games::AIBots::btn_about);
     $Top->bind('<KeyPress-p>', \&Games::AIBots::btn_play);
     $Top->bind('<KeyPress-q>', sub { eval{ $Top->Close() }; exit });
 
@@ -149,7 +153,7 @@ sub init_gui {
         -font => ['helvetica', 12, 'bold'],
         -text => "Developed by Autrijus Tang (autrijus\@autrijus.org).\n".
                  "Idea from A.I.Wars (http://www.tacticalneurotics.com/).\n".
-                 "This game is free software under the Artistic License.\n"
+                 "This game is free software under the Perl License.\n"
     )->pack(-side => 'right', -expand => 'y');
 
     # window layout
@@ -1388,7 +1392,9 @@ sub do_loop {
             tick_bot() if $Running;
             $Console->Display() if $Console;
             next if $Mask and $Running and not $Bots[-1]{dead};
-            my $key = Term::ReadKey::ReadKey(($Running or $Continue) ? -1 : 10) or $Continue or next;
+            my $key = Term::ReadKey::ReadKey(
+		($Running or $Continue) ? -1 : 10
+	    ) or $Continue or next;
             if ($key eq 'h') {
                 $_->{'fuel'} = 0 foreach (@Bots);
                 tick_check();
@@ -1459,7 +1465,10 @@ sub do_loop {
 sub user_tick {
     die "User tick support for non-console mode: Not Yet." unless $Console;
     my $bot = shift;
-    my $msg = sprintf("Score:%d Ammo:%d Life:%d Fuel:%d [%s]", @{$bot}{qw/score ammo life fuel lastcmd/});
+    my $msg = sprintf(
+	"Score:%d Ammo:%d Life:%d Fuel:%d [%s]",
+	@{$bot}{qw/score ammo life fuel lastcmd/}
+    );
     
     if ($bot->{bumped}) {
         obj_set(@{$bot}{'bumped_x', 'bumped_y'}, obj_at(@{$bot}{'bumped_x',
